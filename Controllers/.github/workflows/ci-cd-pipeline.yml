@@ -1,0 +1,37 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0'
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build --configuration Release
+    
+    - name: Run tests
+      run: dotnet test --configuration Release
+    
+    - name: Deploy to AWS Elastic Beanstalk
+      run: |
+        aws elasticbeanstalk create-application-version --application-name my-api --version-label ${{ github.sha }} --source-bundle S3Bucket=my-bucket,S3Key=my-api/${{ github.sha }}.zip
+        aws elasticbeanstalk update-environment --environment-name my-environment --version-label ${{ github.sha }}
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
