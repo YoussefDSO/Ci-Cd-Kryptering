@@ -7,7 +7,7 @@ namespace MyEncryptionAPI.Controllers
     [ApiController]
     public class EncryptionController : ControllerBase
     {
-        private const int Shift = 3; // Skiftning för Caesar-chiffer
+        private const int Shift = 3; // Skiftning för Caesar-chiffer.
 
         [HttpPost("Encrypt")]
         public IActionResult Encrypt([FromBody] string? plainText)
