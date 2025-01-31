@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Yakuz\\Ci-CD-Kryptering\\MyEncryptionAPI\\MyEncryptionAPI.csproj": {}
+    "C:\\Users\\Yakuz\\Source\\Repos\\Ci-Cd-Kryptering\\Ci-Cd-Kryptering\\MyEncryptionAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Yakuz\\Ci-CD-Kryptering\\MyEncryptionAPI\\MyEncryptionAPI.csproj": {
+    "C:\\Users\\Yakuz\\Source\\Repos\\Ci-Cd-Kryptering\\Ci-Cd-Kryptering\\MyEncryptionAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yakuz\\Ci-CD-Kryptering\\MyEncryptionAPI\\MyEncryptionAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Yakuz\\Source\\Repos\\Ci-Cd-Kryptering\\Ci-Cd-Kryptering\\MyEncryptionAPI.csproj",
         "projectName": "MyEncryptionAPI",
-        "projectPath": "C:\\Users\\Yakuz\\Ci-CD-Kryptering\\MyEncryptionAPI\\MyEncryptionAPI.csproj",
+        "projectPath": "C:\\Users\\Yakuz\\Source\\Repos\\Ci-Cd-Kryptering\\Ci-Cd-Kryptering\\MyEncryptionAPI.csproj",
         "packagesPath": "C:\\Users\\Yakuz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Yakuz\\Ci-CD-Kryptering\\MyEncryptionAPI\\obj\\",
+        "outputPath": "C:\\Users\\Yakuz\\Source\\Repos\\Ci-Cd-Kryptering\\Ci-Cd-Kryptering\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Yakuz\\AppData\\Roaming\\NuGet\\NuGet.Config",
