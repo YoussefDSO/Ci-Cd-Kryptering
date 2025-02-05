@@ -1,0 +1,68 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0'
+
+    - name: Clean old builds
+      run: dotnet clean Ci-Cd-Kryptering/MyEncryptionAPI.csproj  # Uppdaterad sökvägen
+
+    - name: Restore dependencies
+      run: dotnet restore Ci-Cd-Kryptering/MyEncryptionAPI.csproj  # Uppdaterad sökväg
+
+    - name: Build
+      run: dotnet build Ci-Cd-Kryptering/MyEncryptionAPI.csproj --configuration Release --no-restore  # Uppdaterad sökväg
+
+    - name: Run tests
+      run: dotnet test Ci-Cd-Kryptering/MyEncryptionAPI.csproj --configuration Release --no-build --logger trx  # Uppdaterad sökväg
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0'
+
+    - name: Publish application
+      run: dotnet publish Ci-Cd-Kryptering/MyEncryptionAPI.csproj -c Release -o app --self-contained false  # Uppdaterad sökväg
+
+    - name: Zip deployment package
+      run: |
+        if [ -d "app" ]; then
+          zip -r deploy.zip app/
+        else
+          echo "Error: App directory is missing, cannot zip."
+          exit 1
+        fi
+
+    - name: Deploy to AWS Elastic Beanstalk
+      uses: einaregilsson/beanstalk-deploy@v21
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: Ci-Cd-Kryptering
+        environment_name: Ci-Cd-Kryperting-env
+        version_label: "v${{ github.run_number }}"
+        region: eu-north-1
+        deployment_package: deploy.zip
