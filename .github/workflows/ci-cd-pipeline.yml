@@ -20,7 +20,7 @@ jobs:
         dotnet-version: '8.0'
 
     - name: Clean old builds
-      run: dotnet clean Ci-Cd-Kryptering/MyEncryptionAPI.csproj  # Uppdaterad sökväg
+      run: dotnet clean Ci-Cd-Kryptering/MyEncryptionAPI.csproj  # Uppdaterad sökvägen
 
     - name: Restore dependencies
       run: dotnet restore Ci-Cd-Kryptering/MyEncryptionAPI.csproj  # Uppdaterad sökväg
