@@ -1,6 +1,13 @@
 @MyEncryptionAPI_HostAddress = http://localhost:5156
 
-GET {{MyEncryptionAPI_HostAddress}}/weatherforecast/
-Accept: application/json
+### Testa kryptering
+POST {{MyEncryptionAPI_HostAddress}}/api/encryption/encrypt
+Content-Type: application/json
 
-###
+"Hello World"
+
+### Testa dekryptering
+POST {{MyEncryptionAPI_HostAddress}}/api/encryption/decrypt
+Content-Type: application/json
+
+"Khoor#Zruog"
